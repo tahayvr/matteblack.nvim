@@ -9,4 +9,10 @@ function M.lualine()
   return require("matteblack.lualine")
 end
 
-return M 
+function M.treesitter()
+  require("nvim-treesitter.configs").setup({
+    highlight = { enable = true },
+  })
+end
+
+return M
