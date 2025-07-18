@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+  Theme Test File for HTML & CSS
+  This file contains a mix of HTML tags and CSS rules.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Test Page</title>
+
+    <style>
+      /* --- CSS Comments --- */
+      /* TODO: Add responsive styles for mobile devices. */
+
+      /* @tag: Element selector */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f2f5;
+        color: #1c1e21;
+      }
+
+      /* @tag.attribute: ID and Class selectors */
+      #main-header {
+        background-color: #4a90e2;
+        color: white; /* @property: `color` */
+        padding: 20px;
+        border-bottom: 5px solid #357abd;
+      }
+
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      /* Attribute selector */
+      input[type="text"] {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+
+      /* @constant.builtin: Pseudo-classes and pseudo-elements */
+      a:hover {
+        text-decoration: underline;
+        color: #d93025;
+      }
+
+      p::first-line {
+        font-weight: bold; /* @constant: `bold` */
+      }
+
+      /* @keyword: Media query */
+      @media (max-width: 600px) {
+        #main-header {
+          text-align: center;
+        }
+      }
+
+      /* --- Deliberate CSS Syntax Error --- */
+      /* Remove the comment markers to test LSP diagnostics */
+      /*
+    .error {
+      color: #ff0000
+      background: blue;
+    }
+    */
+    </style>
+  </head>
+  <body>
+    <header id="main-header">
+      <!-- @text.title: `h1` is a title -->
+      <h1>HTML &amp; CSS Theme Test</h1>
+    </header>
+
+    <main>
+      <div class="card">
+        <h2>A Section Title</h2>
+        <p>
+          This is a paragraph with a <a href="https://neovim.io/">link</a>. It
+          also contains <strong>strong</strong> and <em>emphasized</em> text.
+        </p>
+        <!-- A self-closing tag -->
+        <hr />
+        <ul>
+          <li>List item 1</li>
+          <li data-id="2">List item 2 with a data attribute</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <form action="/submit" method="post">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username..."
+          />
+          <button type="submit" disabled>Submit</button>
+        </form>
+      </div>
+    </main>
+
+    <!-- --- Deliberate HTML Syntax Error --- -->
+    <!-- Remove the comment markers to test LSP diagnostics -->
+    <!-- <div>This tag is not closed. -->
+  </body>
+</html>
