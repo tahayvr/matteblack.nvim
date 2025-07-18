@@ -1,10 +1,27 @@
 local M = {}
 
 M.palette = {
-  bg      = "#121212",
-  fg      = "#EAEAEA",
+  -- shades of gray
+  bg0      = "#0D0D0D", -- Darkest black
+  bg1      = "#121212", -- Main background 
+  bg2      = "#1E1E1E",
+  bg3      = "#2C2C2C",
+  bg4      = "#333333", 
+  fg0      = "#FFFFFF", -- Full white
+  fg1      = "#EAEAEA", -- Main foreground
+  fg2      = "#BEBEBE",
+  fg3      = "#8A8A8D",
+  -- selection
+  selbg    = "#262626",
+  selfg    = "#EAEAEA",
+
+  comment  = "#8A8A8D",
+
+  -- accent colors
   red     = "#B91C1C",
   orange  = "#F59E0B",
+
+  -- extended palette
   yellow  = "#E5C07B",
   pink    = "#E06C75",
   magenta = "#C678DD",
@@ -25,7 +42,7 @@ function M.apply()
 
   -- Basic highlight groups
   vim.api.nvim_set_hl(0, "Normal", { fg = p.fg, bg = p.bg })
-  vim.api.nvim_set_hl(0, "Comment", { fg = p.gray, italic = true })
+  vim.api.nvim_set_hl(0, "Comment", { fg = p.comment, italic = true })
   vim.api.nvim_set_hl(0, "Constant", { fg = p.cyan })
   vim.api.nvim_set_hl(0, "String", { fg = p.green })
   vim.api.nvim_set_hl(0, "Identifier", { fg = p.blue })
