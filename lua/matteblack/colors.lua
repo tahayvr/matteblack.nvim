@@ -185,6 +185,9 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.blue, bold = true })
   vim.api.nvim_set_hl(0, "@variable.builtin.javascript", { fg = p.red, italic = true })
 
+  -- Apply Snacks.nvim theming
+  require("matteblack.snacks").apply()
+
   -- Add more highlight groups
 end
 
