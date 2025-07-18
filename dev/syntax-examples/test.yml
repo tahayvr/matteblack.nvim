@@ -1,0 +1,25 @@
+# YAML uses indentation and is often more human-readable.
+themeName: My Awesome Theme
+version: 1.2.0
+author: Your Name
+license: MIT
+enabled: true
+
+# Nested objects are represented by indentation
+settings:
+  fontSize: 14
+  showLineNumbers: true
+  ignoredFiles:
+    - .git
+    - node_modules
+  # YAML supports null values
+  themeOverrides: null
+
+# YAML also supports anchors and aliases for reusability
+defaults: &defaults
+  adapter: postgres
+  host: localhost
+
+development:
+  database: myapp_dev
+  <<: *defaults # This merges the defaults in

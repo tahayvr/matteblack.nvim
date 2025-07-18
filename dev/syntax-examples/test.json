@@ -1,0 +1,13 @@
+{
+  "themeName": "My Awesome Theme",
+  "version": "1.2.0",
+  "author": "Your Name",
+  "license": "MIT",
+  "enabled": true,
+  "settings": {
+    "fontSize": 14,
+    "showLineNumbers": true,
+    "ignoredFiles": [".git", "node_modules"],
+    "themeOverrides": null
+  }
+}

@@ -1,0 +1,25 @@
+# TOML is designed for unambiguous configuration files.
+themeName = "My Awesome Theme"
+version = "1.2.0"
+author = "Your Name"
+license = "MIT"
+enabled = true
+
+# [tables] are used for object nesting
+[settings]
+fontSize = 14
+showLineNumbers = true
+ignoredFiles = [
+  ".git",
+  "node_modules",
+]
+# TOML doesn't have a null type, so values are often omitted or are empty strings.
+
+# [[array of tables]] for lists of objects
+[[users]]
+name = "Alice"
+roles = ["admin", "editor"]
+
+[[users]]
+name = "Bob"
+roles = ["viewer"]
