@@ -12,7 +12,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@comment.error", { fg = p.red, italic = true })
   vim.api.nvim_set_hl(0, "@comment.warning", { fg = p.orange, italic = true })
   vim.api.nvim_set_hl(0, "@comment.todo", { fg = p.yellow, bold = true })
-  vim.api.nvim_set_hl(0, "@comment.note", { fg = p.blue, italic = true })
+  vim.api.nvim_set_hl(0, "@comment.note", { fg = p.fg2, italic = true })
 
   -- Constants
   vim.api.nvim_set_hl(0, "@constant", { fg = p.cyan })
@@ -20,14 +20,14 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.cyan })
 
   -- Strings
-  vim.api.nvim_set_hl(0, "@string", { fg = p.green })
-  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.green })
+  vim.api.nvim_set_hl(0, "@string", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@string.regex", { fg = p.orange })
   vim.api.nvim_set_hl(0, "@string.escape", { fg = p.magenta })
   vim.api.nvim_set_hl(0, "@string.special", { fg = p.orange })
 
   -- Characters
-  vim.api.nvim_set_hl(0, "@character", { fg = p.green })
+  vim.api.nvim_set_hl(0, "@character", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@character.special", { fg = p.orange })
 
   -- Numbers
@@ -38,13 +38,13 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@boolean", { fg = p.orange })
 
   -- Functions
-  vim.api.nvim_set_hl(0, "@function", { fg = p.blue })
-  vim.api.nvim_set_hl(0, "@function.builtin", { fg = p.blue, bold = true })
-  vim.api.nvim_set_hl(0, "@function.call", { fg = p.blue })
+  vim.api.nvim_set_hl(0, "@function", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@function.builtin", { fg = p.fg2, bold = true })
+  vim.api.nvim_set_hl(0, "@function.call", { fg = p.fg2 })
   vim.api.nvim_set_hl(0, "@function.macro", { fg = p.magenta })
-  vim.api.nvim_set_hl(0, "@method", { fg = p.blue })
-  vim.api.nvim_set_hl(0, "@method.call", { fg = p.blue })
-  vim.api.nvim_set_hl(0, "@constructor", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "@method", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@method.call", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@constructor", { fg = p.pink })
 
   -- Variables
   vim.api.nvim_set_hl(0, "@variable", { fg = p.fg1 })
@@ -57,9 +57,9 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@field", { fg = p.cyan })
 
   -- Types
-  vim.api.nvim_set_hl(0, "@type", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@type.builtin", { fg = p.yellow, bold = true })
-  vim.api.nvim_set_hl(0, "@type.definition", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "@type", { fg = p.pink })
+  vim.api.nvim_set_hl(0, "@type.builtin", { fg = p.pink, bold = true })
+  vim.api.nvim_set_hl(0, "@type.definition", { fg = p.pink })
   vim.api.nvim_set_hl(0, "@type.qualifier", { fg = p.magenta })
 
   -- Keywords
@@ -88,20 +88,20 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@markup.italic", { fg = p.fg1, italic = true })
   vim.api.nvim_set_hl(0, "@markup.strikethrough", { fg = p.gray, strikethrough = true })
   vim.api.nvim_set_hl(0, "@markup.underline", { fg = p.fg1, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.heading", { fg = p.blue, bold = true })
+  vim.api.nvim_set_hl(0, "@markup.heading", { fg = p.orange, bold = true })
   vim.api.nvim_set_hl(0, "@markup.quote", { fg = p.gray, italic = true })
-  vim.api.nvim_set_hl(0, "@markup.math", { fg = p.blue })
+  vim.api.nvim_set_hl(0, "@markup.math", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@markup.link", { fg = p.cyan, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.link.label", { fg = p.blue })
+  vim.api.nvim_set_hl(0, "@markup.link.label", { fg = p.pink })
   vim.api.nvim_set_hl(0, "@markup.link.url", { fg = p.cyan, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.raw", { fg = p.green })
-  vim.api.nvim_set_hl(0, "@markup.raw.block", { fg = p.green })
+  vim.api.nvim_set_hl(0, "@markup.raw", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "@markup.raw.block", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@markup.list", { fg = p.magenta })
-  vim.api.nvim_set_hl(0, "@markup.list.checked", { fg = p.green })
+  vim.api.nvim_set_hl(0, "@markup.list.checked", { fg = p.orange })
   vim.api.nvim_set_hl(0, "@markup.list.unchecked", { fg = p.orange })
 
   -- Tags (HTML/XML)
-  vim.api.nvim_set_hl(0, "@tag", { fg = p.blue })
+  vim.api.nvim_set_hl(0, "@tag", { fg = p.orange })
   vim.api.nvim_set_hl(0, "@tag.attribute", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = p.gray })
 
@@ -112,8 +112,8 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@label", { fg = p.magenta })
 
   -- Namespace
-  vim.api.nvim_set_hl(0, "@namespace", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@module", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "@namespace", { fg = p.pink })
+  vim.api.nvim_set_hl(0, "@module", { fg = p.pink })
 
   -- Preproc
   vim.api.nvim_set_hl(0, "@preproc", { fg = p.magenta })
@@ -137,21 +137,21 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@character.printf", { fg = p.orange })
 
   -- Diff
-  vim.api.nvim_set_hl(0, "@diff.plus", { fg = p.green })
+  vim.api.nvim_set_hl(0, "@diff.plus", { fg = p.orange })
   vim.api.nvim_set_hl(0, "@diff.minus", { fg = p.red })
-  vim.api.nvim_set_hl(0, "@diff.delta", { fg = p.blue })
+  vim.api.nvim_set_hl(0, "@diff.delta", { fg = p.yellow })
 
   -- Language-specific
   -- Lua
-  vim.api.nvim_set_hl(0, "@function.builtin.lua", { fg = p.blue, bold = true })
+  vim.api.nvim_set_hl(0, "@function.builtin.lua", { fg = p.fg2, bold = true })
   vim.api.nvim_set_hl(0, "@variable.builtin.lua", { fg = p.red, italic = true })
 
   -- Python
-  vim.api.nvim_set_hl(0, "@function.builtin.python", { fg = p.blue, bold = true })
+  vim.api.nvim_set_hl(0, "@function.builtin.python", { fg = p.fg2, bold = true })
   vim.api.nvim_set_hl(0, "@variable.builtin.python", { fg = p.red, italic = true })
 
   -- JavaScript/TypeScript
-  vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.blue, bold = true })
+  vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.fg2, bold = true })
   vim.api.nvim_set_hl(0, "@variable.builtin.javascript", { fg = p.red, italic = true })
 end
 
