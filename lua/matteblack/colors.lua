@@ -64,6 +64,9 @@ function M.apply()
 
   -- Apply todo-comments.nvim theming
   require("matteblack.todo-comments").apply()
+
+  -- Apply Noice.nvim theming
+  require("matteblack.noice").apply()
 end
 
 return M 
