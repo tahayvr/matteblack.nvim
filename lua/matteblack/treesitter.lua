@@ -7,11 +7,14 @@ function M.apply()
 
   -- Treesitter highlight groups
   -- Comments
-  vim.api.nvim_set_hl(0, "@comment", { fg = p.gray, italic = true })
-  vim.api.nvim_set_hl(0, "@comment.documentation", { fg = p.gray, italic = true })
+  vim.api.nvim_set_hl(0, "@comment", { fg = p.comment, italic = true })
+  vim.api.nvim_set_hl(0, "@comment.documentation", { fg = p.comment, italic = true })
   vim.api.nvim_set_hl(0, "@comment.error", { fg = p.red, italic = true })
   vim.api.nvim_set_hl(0, "@comment.warning", { fg = p.orange, italic = true })
   vim.api.nvim_set_hl(0, "@comment.todo", { fg = p.yellow, bold = true })
+  vim.api.nvim_set_hl(0, "@comment.fixme", { fg = p.red, bold = true })
+  vim.api.nvim_set_hl(0, "@comment.hack", { fg = p.orange, bold = true })
+  vim.api.nvim_set_hl(0, "@comment.xxx", { fg = p.magenta, bold = true })
   vim.api.nvim_set_hl(0, "@comment.note", { fg = p.fg2, italic = true })
 
   -- Constants
@@ -153,6 +156,7 @@ function M.apply()
   -- JavaScript/TypeScript
   vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.fg2, bold = true })
   vim.api.nvim_set_hl(0, "@variable.builtin.javascript", { fg = p.red, italic = true })
+
 end
 
 return M

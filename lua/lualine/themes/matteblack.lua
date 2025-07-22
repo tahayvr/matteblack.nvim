@@ -1,2 +1,2 @@
 -- Return the matteblack lualine theme from the main module
-return require('matteblack.lualine') 
+return require('matteblack.lualine')

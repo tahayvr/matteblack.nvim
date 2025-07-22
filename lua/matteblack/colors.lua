@@ -61,6 +61,9 @@ function M.apply()
 
   -- Apply Snacks.nvim theming
   require("matteblack.snacks").apply()
+
+  -- Apply todo-comments.nvim theming
+  require("matteblack.todo-comments").apply()
 end
 
 return M 
