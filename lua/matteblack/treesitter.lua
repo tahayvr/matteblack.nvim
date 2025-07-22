@@ -23,11 +23,11 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.cyan })
 
   -- Strings
-  vim.api.nvim_set_hl(0, "@string", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@string.regex", { fg = p.orange })
-  vim.api.nvim_set_hl(0, "@string.escape", { fg = p.magenta })
-  vim.api.nvim_set_hl(0, "@string.special", { fg = p.orange })
+  vim.api.nvim_set_hl(0, "@string", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@string.regex", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@string.escape", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "@string.special", { fg = p.fg2 })
 
   -- Characters
   vim.api.nvim_set_hl(0, "@character", { fg = p.yellow })

@@ -47,7 +47,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "CursorColumn", { bg = p.bg2 }) -- Cursor column background
   vim.api.nvim_set_hl(0, "Comment", { fg = p.comment, italic = true })
   vim.api.nvim_set_hl(0, "Constant", { fg = p.cyan }) -- Warm amber for constants
-  vim.api.nvim_set_hl(0, "String", { fg = p.yellow }) -- Bright yellow for strings
+  vim.api.nvim_set_hl(0, "String", { fg = p.fg1 }) -- Bright gray for strings
   vim.api.nvim_set_hl(0, "Identifier", { fg = p.fg2 }) -- Neutral foreground for identifiers
   vim.api.nvim_set_hl(0, "Statement", { fg = p.red }) -- Keep red for statements
   vim.api.nvim_set_hl(0, "PreProc", { fg = p.orange }) -- Orange for preprocessor
