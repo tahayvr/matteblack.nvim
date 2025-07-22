@@ -52,7 +52,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "Statement", { fg = p.red }) -- Keep red for statements
   vim.api.nvim_set_hl(0, "PreProc", { fg = p.orange }) -- Orange for preprocessor
   vim.api.nvim_set_hl(0, "Type", { fg = p.pink }) -- Warm coral pink for types
-  vim.api.nvim_set_hl(0, "Special", { fg = p.magenta }) -- Deep red for special chars
+  vim.api.nvim_set_hl(0, "Special", { fg = p.yellow }) -- Deep red for special chars
   vim.api.nvim_set_hl(0, "Underlined", { fg = p.cyan, underline = true }) -- Warm amber underlines
   vim.api.nvim_set_hl(0, "Todo", { fg = p.yellow, bg = p.bg1, bold = true }) -- Bright yellow todos
 
