@@ -18,9 +18,9 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@comment.note", { fg = p.fg2, italic = true })
 
   -- Constants
-  vim.api.nvim_set_hl(0, "@constant", { fg = p.cyan })
-  vim.api.nvim_set_hl(0, "@constant.builtin", { fg = p.cyan, bold = true })
-  vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.cyan })
+  vim.api.nvim_set_hl(0, "@constant", { fg = p.amber })
+  vim.api.nvim_set_hl(0, "@constant.builtin", { fg = p.amber, bold = true })
+  vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.amber })
 
   -- Strings
   vim.api.nvim_set_hl(0, "@string", { fg = p.fg2 })
@@ -53,11 +53,11 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@variable", { fg = p.fg1 })
   vim.api.nvim_set_hl(0, "@variable.builtin", { fg = p.red, italic = true })
   vim.api.nvim_set_hl(0, "@variable.parameter", { fg = p.pink, italic = true })
-  vim.api.nvim_set_hl(0, "@variable.member", { fg = p.cyan })
+  vim.api.nvim_set_hl(0, "@variable.member", { fg = p.amber })
 
   -- Properties
-  vim.api.nvim_set_hl(0, "@property", { fg = p.cyan })
-  vim.api.nvim_set_hl(0, "@field", { fg = p.cyan })
+  vim.api.nvim_set_hl(0, "@property", { fg = p.amber })
+  vim.api.nvim_set_hl(0, "@field", { fg = p.amber })
 
   -- Types
   vim.api.nvim_set_hl(0, "@type", { fg = p.pink })
@@ -94,9 +94,9 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@markup.heading", { fg = p.orange, bold = true })
   vim.api.nvim_set_hl(0, "@markup.quote", { fg = p.gray, italic = true })
   vim.api.nvim_set_hl(0, "@markup.math", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@markup.link", { fg = p.cyan, underline = true })
+  vim.api.nvim_set_hl(0, "@markup.link", { fg = p.amber, underline = true })
   vim.api.nvim_set_hl(0, "@markup.link.label", { fg = p.pink })
-  vim.api.nvim_set_hl(0, "@markup.link.url", { fg = p.cyan, underline = true })
+  vim.api.nvim_set_hl(0, "@markup.link.url", { fg = p.amber, underline = true })
   vim.api.nvim_set_hl(0, "@markup.raw", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@markup.raw.block", { fg = p.yellow })
   vim.api.nvim_set_hl(0, "@markup.list", { fg = p.magenta })

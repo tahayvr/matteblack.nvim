@@ -91,13 +91,13 @@ No additional configuration needed - treesitter highlights are included automati
 | ---------- | --------- | ------------------------- |
 | Background | `#121212` | Main background           |
 | Foreground | `#EAEAEA` | Main text                 |
-| Blue       | `#61AFEF` | Functions, headings       |
+| gray2      | `#61AFEF` | Functions, headings       |
 | Yellow     | `#E5C07B` | Types, constructors       |
 | Magenta    | `#C678DD` | Keywords, control flow    |
-| Green      | `#98C379` | Strings, positive changes |
+| gray1      | `#98C379` | Strings, positive changes |
 | Red        | `#B91C1C` | Errors, exceptions        |
 | Orange     | `#F59E0B` | Numbers, warnings         |
-| Cyan       | `#56B6C2` | Constants, properties     |
+| amber      | `#56B6C2` | Constants, properties     |
 | Pink       | `#E06C75` | Parameters                |
 | Gray       | `#5C6370` | Comments, delimiters      |
 -->

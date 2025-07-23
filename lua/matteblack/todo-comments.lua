@@ -20,8 +20,8 @@ function M.apply()
   vim.api.nvim_set_hl(0, "TodoFgWARN", { fg = p.red, bold = true })
   vim.api.nvim_set_hl(0, "TodoBgPERF", { fg = p.bg1, bg = p.orange, bold = true })
   vim.api.nvim_set_hl(0, "TodoFgPERF", { fg = p.orange, bold = true })
-  vim.api.nvim_set_hl(0, "TodoBgTEST", { fg = p.bg1, bg = p.cyan, bold = true })
-  vim.api.nvim_set_hl(0, "TodoFgTEST", { fg = p.cyan, bold = true })
+  vim.api.nvim_set_hl(0, "TodoBgTEST", { fg = p.bg1, bg = p.amber, bold = true })
+  vim.api.nvim_set_hl(0, "TodoFgTEST", { fg = p.amber, bold = true })
 
   -- Additional todo-comments.nvim variants
   vim.api.nvim_set_hl(0, "TodoSignTODO", { fg = p.yellow, bold = true })
@@ -31,7 +31,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "TodoSignNOTE", { fg = p.fg2, italic = true })
   vim.api.nvim_set_hl(0, "TodoSignWARN", { fg = p.red, bold = true })
   vim.api.nvim_set_hl(0, "TodoSignPERF", { fg = p.orange, bold = true })
-  vim.api.nvim_set_hl(0, "TodoSignTEST", { fg = p.cyan, bold = true })
+  vim.api.nvim_set_hl(0, "TodoSignTEST", { fg = p.amber, bold = true })
 end
 
 return M
