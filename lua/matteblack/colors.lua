@@ -93,6 +93,9 @@ function M.apply()
 
   -- Apply Noice.nvim theming
   require("matteblack.noice").apply()
+
+  -- Apply neotree theming
+  require("matteblack.neotree").apply()
 end
 
 return M 
