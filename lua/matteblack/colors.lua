@@ -22,10 +22,15 @@ M.palette = {
   orange  = "#F59E0B",
 
   -- extended palette (warm analogous colors)
-  yellow  = "#FBBF24", -- Bright warm yellow, analogous to orange
+  yellow  = "#FBBF24", -- Bright yellow
+  gold    = "#EFBF04", -- Gold
+  ochre   = "#BF9903", -- Ochre
   amber   = "#D97706", -- Warm amber, analogous to orange
-  pink    = "#F87171", -- Warm coral pink, between red and orange
-  magenta = "#DC2626", -- Deep red-magenta, darker than main red
+
+  pink    = "#F87171", -- Coral pink
+  magenta = "#DC2626", -- red-magenta
+  chili   = "#9B1313", -- Dark chili red
+
   gray    = "#5C6370",
   gray1   = "#A3A3A3",
   gray2   = "#737373",
