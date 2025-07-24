@@ -56,6 +56,32 @@ function M.apply()
   vim.api.nvim_set_hl(0, "Underlined", { fg = p.amber, underline = true }) -- Warm amber underlines
   vim.api.nvim_set_hl(0, "Todo", { fg = p.yellow, bg = p.bg1, bold = true }) -- Bright yellow todos
 
+  -- Essential UI elements for better readability
+  vim.api.nvim_set_hl(0, "LineNr", { fg = p.fg3 }) -- Line numbers in subtle gray
+  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = p.orange, bold = true }) -- Current line number highlighted
+  vim.api.nvim_set_hl(0, "Visual", { bg = p.selbg, fg = p.selfg }) -- Selection highlighting
+  vim.api.nvim_set_hl(0, "Search", { fg = p.bg1, bg = p.yellow }) -- Search highlighting
+  vim.api.nvim_set_hl(0, "IncSearch", { fg = p.bg1, bg = p.orange }) -- Incremental search
+  vim.api.nvim_set_hl(0, "StatusLine", { fg = p.fg1, bg = p.bg3 }) -- Status line
+  vim.api.nvim_set_hl(0, "StatusLineNC", { fg = p.fg3, bg = p.bg2 }) -- Inactive status line
+  vim.api.nvim_set_hl(0, "VertSplit", { fg = p.bg4 }) -- Window splits
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = p.bg4 }) -- Modern window separators
+  vim.api.nvim_set_hl(0, "TabLine", { fg = p.fg3, bg = p.bg2 }) -- Tab line
+  vim.api.nvim_set_hl(0, "TabLineFill", { bg = p.bg1 }) -- Tab line fill
+  vim.api.nvim_set_hl(0, "TabLineSel", { fg = p.fg1, bg = p.bg3, bold = true }) -- Selected tab
+  
+  -- Popup menus for better completion readability
+  vim.api.nvim_set_hl(0, "Pmenu", { fg = p.fg2, bg = p.bg3 }) -- Popup menu
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = p.fg1, bg = p.bg4 }) -- Selected popup item
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = p.bg4 }) -- Popup scrollbar
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = p.fg3 }) -- Popup scrollbar thumb
+  
+  -- Error and warning highlights
+  vim.api.nvim_set_hl(0, "Error", { fg = p.red, bold = true }) -- Error text
+  vim.api.nvim_set_hl(0, "ErrorMsg", { fg = p.red, bold = true }) -- Error messages
+  vim.api.nvim_set_hl(0, "WarningMsg", { fg = p.orange, bold = true }) -- Warning messages
+  vim.api.nvim_set_hl(0, "ModeMsg", { fg = p.fg2 }) -- Mode messages
+
   -- Apply Treesitter theming
   require("matteblack.treesitter").apply()
 
