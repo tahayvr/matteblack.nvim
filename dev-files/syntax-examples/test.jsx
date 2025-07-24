@@ -23,7 +23,8 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
   );
 };
 
-// --- Main App Component ---
+// --- Main App Component
+
 function App() {
   // --- State with Hooks ---
   // @function.call: `useState` is a function call
