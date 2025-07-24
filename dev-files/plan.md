@@ -6,7 +6,7 @@
 
 These plugins are critical for a modern Neovim colorscheme and should be implemented first.
 
-- [ ] **TreeSitter** - Modern syntax highlighting with semantic tokens
+- [x] **TreeSitter** - Modern syntax highlighting with semantic tokens
 - [ ] **LSP Diagnostics** - Built-in Neovim LSP (errors, warnings, hints, info)
 - [ ] **Telescope** - Fuzzy finder interface and highlighting
 - [ ] **GitSigns** - Git gutter signs and line highlighting

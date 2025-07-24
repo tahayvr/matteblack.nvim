@@ -15,7 +15,7 @@ function M.apply()
   vim.api.nvim_set_hl(0, "@comment.fixme", { fg = p.red, bold = true }) -- // FIXME: broken code
   vim.api.nvim_set_hl(0, "@comment.hack", { fg = p.orange, bold = true }) -- // HACK: temporary solution
   vim.api.nvim_set_hl(0, "@comment.xxx", { fg = p.magenta, bold = true }) -- // XXX: questionable code
-  vim.api.nvim_set_hl(0, "@comment.note", { fg = p.fg2, italic = true }) -- // NOTE: important info
+  vim.api.nvim_set_hl(0, "@comment.note", { fg = p.comment, italic = true }) -- // NOTE: important info
 
   -- Constants (const MAX_SIZE = 100, true, false, null, undefined)
   vim.api.nvim_set_hl(0, "@constant", { fg = p.amber })
