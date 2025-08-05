@@ -4,13 +4,12 @@ M.palette = {
   -- shades of gray
   bg0      = "#0D0D0D", -- Darkest black
   bg1      = "#121212", -- Main background 
-  bg2      = "#1E1E1E",
-  bg3      = "#2C2C2C",
-  bg4      = "#333333", 
+  bg2      = "#333333", -- Dark Gray
+  bg3      = "#212121", -- Extra dark gray
   fg0      = "#FFFFFF", -- Full white
   fg1      = "#EAEAEA", -- Main foreground
-  fg2      = "#BEBEBE",
-  fg3      = "#8A8A8D",
+  fg2      = "#BEBEBE", -- Extra light gray
+  fg3      = "#8A8A8D", -- Light gray
   -- selection
   selbg    = "#262626",
   selfg    = "#EAEAEA",
@@ -69,16 +68,16 @@ function M.apply()
   vim.api.nvim_set_hl(0, "IncSearch", { fg = p.bg1, bg = p.orange }) -- Incremental search
   vim.api.nvim_set_hl(0, "StatusLine", { fg = p.fg1, bg = p.bg3 }) -- Status line
   vim.api.nvim_set_hl(0, "StatusLineNC", { fg = p.fg3, bg = p.bg2 }) -- Inactive status line
-  vim.api.nvim_set_hl(0, "VertSplit", { fg = p.bg4 }) -- Window splits
-  vim.api.nvim_set_hl(0, "WinSeparator", { fg = p.bg4 }) -- Modern window separators
+  vim.api.nvim_set_hl(0, "VertSplit", { fg = p.bg2 }) -- Window splits
+  vim.api.nvim_set_hl(0, "WinSeparator", { fg = p.bg2 }) -- Modern window separators
   vim.api.nvim_set_hl(0, "TabLine", { fg = p.fg3, bg = p.bg2 }) -- Tab line
   vim.api.nvim_set_hl(0, "TabLineFill", { bg = p.bg1 }) -- Tab line fill
   vim.api.nvim_set_hl(0, "TabLineSel", { fg = p.fg1, bg = p.bg3, bold = true }) -- Selected tab
   
   -- Popup menus for better completion readability
   vim.api.nvim_set_hl(0, "Pmenu", { fg = p.fg2, bg = p.bg3 }) -- Popup menu
-  vim.api.nvim_set_hl(0, "PmenuSel", { fg = p.fg1, bg = p.bg4 }) -- Selected popup item
-  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = p.bg4 }) -- Popup scrollbar
+  vim.api.nvim_set_hl(0, "PmenuSel", { fg = p.fg1, bg = p.bg2 }) -- Selected popup item
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = p.bg2 }) -- Popup scrollbar
   vim.api.nvim_set_hl(0, "PmenuThumb", { bg = p.fg3 }) -- Popup scrollbar thumb
   
   -- Error and warning highlights

@@ -9,25 +9,25 @@ function M.apply()
   vim.api.nvim_set_hl(0, "NeoTreeNormal", { fg = p.fg1, bg = p.bg1 })
   vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { fg = p.fg2, bg = p.bg1 })
   vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { fg = p.bg1, bg = p.bg1 })
-  vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = p.bg4, bg = p.bg1 })
-  vim.api.nvim_set_hl(0, "NeoTreeVertSplit", { fg = p.bg4, bg = p.bg1 })
+  vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { fg = p.bg2, bg = p.bg1 })
+  vim.api.nvim_set_hl(0, "NeoTreeVertSplit", { fg = p.bg2, bg = p.bg1 })
 
   -- Title and tabs
   vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { fg = p.fg3, bg = p.bg2 })
   vim.api.nvim_set_hl(0, "NeoTreeTabActive", { fg = p.orange, bg = p.bg3, bold = true })
-  vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { fg = p.bg4, bg = p.bg2 })
-  vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorActive", { fg = p.bg4, bg = p.bg3 })
+  vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { fg = p.bg2, bg = p.bg2 })
+  vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorActive", { fg = p.bg2, bg = p.bg3 })
 
   -- Directory and file icons
-  vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = p.yellow })
+  vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = p.fg2 })
+  vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = p.fg2 })
   vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = p.fg1 })
   vim.api.nvim_set_hl(0, "NeoTreeFileIcon", { fg = p.fg2 })
   vim.api.nvim_set_hl(0, "NeoTreeRootName", { fg = p.orange, bold = true })
 
   -- File types and extensions
   vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = p.amber, italic = true })
-  vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = p.bg4 })
+  vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = p.bg2 })
   vim.api.nvim_set_hl(0, "NeoTreeExpander", { fg = p.fg3 })
 
   -- Cursor and selection
@@ -48,11 +48,11 @@ function M.apply()
   vim.api.nvim_set_hl(0, "NeoTreeSymbolicLinkTarget", { fg = p.magenta, italic = true })
 
   -- Floating window (for popups)
-  vim.api.nvim_set_hl(0, "NeoTreeFloatBorder", { fg = p.bg4, bg = p.bg1 })
+  vim.api.nvim_set_hl(0, "NeoTreeFloatBorder", { fg = p.bg2, bg = p.bg1 })
   vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { fg = p.orange, bg = p.bg1, bold = true })
 
   -- Preview window
-  vim.api.nvim_set_hl(0, "NeoTreePreviewBorder", { fg = p.bg4, bg = p.bg1 })
+  vim.api.nvim_set_hl(0, "NeoTreePreviewBorder", { fg = p.bg2, bg = p.bg1 })
   vim.api.nvim_set_hl(0, "NeoTreePreviewTitle", { fg = p.pink, bg = p.bg1, bold = true })
 
   -- Buffers tab
