@@ -1,162 +1,158 @@
-local colors = require("matteblack.colors").palette
+---@diagnostic disable: undefined-global
+
+local colors = require("matteblack.colors")
 
 local M = {}
 
+local function set(group, spec)
+  vim.api.nvim_set_hl(0, group, spec)
+end
+
 function M.apply()
-  local p = colors
+  local p = colors.palette
 
-  -- Treesitter highlight groups
-  -- Comments (// This is a comment, /* block comment */, # Python comment)
-  vim.api.nvim_set_hl(0, "@comment", { fg = p.comment, italic = true })
-  vim.api.nvim_set_hl(0, "@comment.documentation", { fg = p.comment, italic = true }) -- /** JSDoc comments */
-  vim.api.nvim_set_hl(0, "@comment.error", { fg = p.red, italic = true }) -- // ERROR: something wrong
-  vim.api.nvim_set_hl(0, "@comment.warning", { fg = p.orange, italic = true }) -- // WARNING: be careful
-  vim.api.nvim_set_hl(0, "@comment.todo", { fg = p.yellow, bold = true }) -- // TODO: implement this
-  vim.api.nvim_set_hl(0, "@comment.fixme", { fg = p.red, bold = true }) -- // FIXME: broken code
-  vim.api.nvim_set_hl(0, "@comment.hack", { fg = p.orange, bold = true }) -- // HACK: temporary solution
-  vim.api.nvim_set_hl(0, "@comment.xxx", { fg = p.magenta, bold = true }) -- // XXX: questionable code
-  vim.api.nvim_set_hl(0, "@comment.note", { fg = p.comment, italic = true }) -- // NOTE: important info
+  local highlights = {
+    -- Comments
+    ["@comment"] = { fg = p.comment, italic = true },
+    ["@comment.documentation"] = { fg = p.comment, italic = true },
+    ["@comment.error"] = { fg = p.crimson, italic = true },
+    ["@comment.warning"] = { fg = p.amber, italic = true },
+    ["@comment.todo"] = { fg = p.yellow, italic = true },
+    ["@comment.note"] = { fg = p.comment, italic = true },
+    ["@comment.hint"] = { fg = p.comment, italic = true },
+    ["@comment.hack"] = { fg = p.amber, italic = true },
+    ["@comment.fixme"] = { fg = p.crimson, bold = true },
+    ["@comment.xxx"] = { fg = p.purple, bold = true },
 
-  -- Constants (const MAX_SIZE = 100, true, false, null, undefined)
-  vim.api.nvim_set_hl(0, "@constant", { fg = p.amber })
-  vim.api.nvim_set_hl(0, "@constant.builtin", { fg = p.amber, bold = true }) -- true, false, null, undefined, None, True
-  vim.api.nvim_set_hl(0, "@constant.macro", { fg = p.amber }) -- #define MAX_SIZE 100
+    -- Constants
+    ["@constant"] = { fg = p.amber },
+    ["@constant.builtin"] = { fg = p.amber },
+    ["@constant.macro"] = { fg = p.yellow },
 
-  -- Strings ("Hello World", 'single quotes', `template literals`, """multiline""")
-  vim.api.nvim_set_hl(0, "@string", { fg = p.fg2 })
-  vim.api.nvim_set_hl(0, "@string.documentation", { fg = p.fg2 }) -- """Docstring content"""
-  vim.api.nvim_set_hl(0, "@string.regex", { fg = p.fg2 }) -- /pattern/gi, r"regex"
-  vim.api.nvim_set_hl(0, "@string.escape", { fg = p.fg2 }) -- \n, \t, \", \\
-  vim.api.nvim_set_hl(0, "@string.special", { fg = p.fg2 }) -- f"formatted {variable}"
+    -- Strings
+    ["@string"] = { fg = p.fg1 },
+    ["@string.documentation"] = { fg = p.fg1 },
+    ["@string.regex"] = { fg = p.amber },
+    ["@string.escape"] = { fg = p.gold },
+    ["@string.special"] = { fg = p.gold },
+    ["@string.special.symbol"] = { fg = p.gold },
+    ["@string.special.path"] = { fg = p.gold },
+    ["@string.special.url"] = { fg = p.orange, italic = true },
 
-  -- Characters ('a', 'b', '\n')
-  vim.api.nvim_set_hl(0, "@character", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@character.special", { fg = p.orange }) -- '\0', '\x41'
+    -- Characters & numbers
+    ["@character"] = { fg = p.gold },
+    ["@character.special"] = { fg = p.gold },
+    ["@number"] = { fg = p.gold },
+    ["@number.float"] = { fg = p.gold },
+    ["@boolean"] = { fg = p.teal },
 
-  -- Numbers (42, 3.14, 0xFF, 0b1010, 1e10)
-  vim.api.nvim_set_hl(0, "@number", { fg = p.orange })
-  vim.api.nvim_set_hl(0, "@number.float", { fg = p.orange }) -- 3.14, 2.5f
+    -- Functions
+    ["@function"] = { fg = p.crimson },
+    ["@function.builtin"] = { fg = p.amber },
+    ["@function.call"] = { fg = p.orange },
+    ["@function.macro"] = { fg = p.yellow },
+    ["@function.method"] = { fg = p.orange },
+    ["@function.method.call"] = { fg = p.orange },
+    ["@function.decorator"] = { fg = p.amber },
+    ["@constructor"] = { fg = p.yellow },
 
-  -- Booleans (true, false, True, False)
-  vim.api.nvim_set_hl(0, "@boolean", { fg = p.orange })
+    -- Variables
+    ["@variable"] = { fg = p.amber },
+    ["@variable.builtin"] = { fg = p.blue },
+    ["@variable.parameter"] = { fg = p.fg2 },
+    ["@variable.member"] = { fg = p.fg1 },
+    ["@variable.global"] = { fg = p.amber },
+    ["@variable.special"] = { fg = p.blue, italic = true },
 
-  -- Functions (function myFunc(), def my_function():, const arrow = () => {})
-  vim.api.nvim_set_hl(0, "@function", { fg = p.red })
-  vim.api.nvim_set_hl(0, "@function.builtin", { fg = p.magenta, bold = true }) -- console.log(), print(), len()
-  vim.api.nvim_set_hl(0, "@function.call", { fg = p.amber }) -- myFunc(), someFunction()
-  vim.api.nvim_set_hl(0, "@function.macro", { fg = p.magenta }) -- #define FUNC(x) ((x) * 2)
-  vim.api.nvim_set_hl(0, "@method", { fg = p.fg2 }) -- obj.method(), this.doSomething()
-  vim.api.nvim_set_hl(0, "@method.call", { fg = p.fg2 }) -- obj.method(), array.push()
-  vim.api.nvim_set_hl(0, "@constructor", { fg = p.pink }) -- new MyClass(), MyClass(), __init__()
+    -- Fields & properties
+    ["@field"] = { fg = p.orange },
+    ["@property"] = { fg = p.orange },
+    ["@label"] = { fg = p.green },
 
-  -- Variables (let myVar, const data, var counter, myVariable)
-  vim.api.nvim_set_hl(0, "@variable", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@variable.builtin", { fg = p.red, italic = true }) -- this, self, __name__, arguments
-  vim.api.nvim_set_hl(0, "@variable.parameter", { fg = p.pink, italic = true }) -- function(param1, param2)
-  vim.api.nvim_set_hl(0, "@variable.member", { fg = p.amber }) -- obj.property, this.value
+    -- Types & namespaces
+    ["@type"] = { fg = p.yellow },
+    ["@type.builtin"] = { fg = p.orange, italic = true },
+    ["@type.definition"] = { fg = p.yellow },
+    ["@type.qualifier"] = { fg = p.orange },
+    ["@type.interface"] = { fg = p.yellow, italic = true },
+    ["@type.parameter"] = { fg = p.yellow, italic = true },
+    ["@namespace"] = { fg = p.ochre, italic = true },
+    ["@module"] = { fg = p.ochre, italic = true },
 
-  -- Properties (obj.prop, this.name, user.email, data.length)
-  vim.api.nvim_set_hl(0, "@property", { fg = p.amber })
-  vim.api.nvim_set_hl(0, "@field", { fg = p.amber }) -- struct fields, class properties
+    -- Keywords & operators
+    ["@keyword"] = { fg = p.green },
+    ["@keyword.function"] = { fg = p.green },
+    ["@keyword.operator"] = { fg = p.fg2 },
+    ["@keyword.return"] = { fg = p.green },
+    ["@keyword.import"] = { fg = p.green },
+    ["@keyword.conditional"] = { fg = p.green },
+    ["@keyword.repeat"] = { fg = p.green },
+    ["@keyword.exception"] = { fg = p.green },
+    ["@keyword.directive"] = { fg = p.blue },
+    ["@keyword.directive.define"] = { fg = p.yellow },
+    ["@keyword.modifier"] = { fg = p.green },
+    ["@operator"] = { fg = p.fg2 },
 
-  -- Types (string, int, boolean, MyClass, React.Component)
-  vim.api.nvim_set_hl(0, "@type", { fg = p.pink })
-  vim.api.nvim_set_hl(0, "@type.builtin", { fg = p.pink, bold = true }) -- int, string, boolean, number
-  vim.api.nvim_set_hl(0, "@type.definition", { fg = p.pink }) -- class MyClass, interface User
-  vim.api.nvim_set_hl(0, "@type.qualifier", { fg = p.magenta }) -- const, readonly, static
+    -- Punctuation
+    ["@punctuation"] = { fg = p.fg3 },
+    ["@punctuation.delimiter"] = { fg = p.fg3 },
+    ["@punctuation.bracket"] = { fg = p.fg3 },
+    ["@punctuation.special"] = { fg = p.blue },
+    ["@punctuation.special.symbol"] = { fg = p.blue },
 
-  -- Keywords (if, else, for, while, class, function, return, import)
-  vim.api.nvim_set_hl(0, "@keyword", { fg = p.magenta })
-  vim.api.nvim_set_hl(0, "@keyword.function", { fg = p.magenta }) -- function, def, func
-  vim.api.nvim_set_hl(0, "@keyword.operator", { fg = p.magenta }) -- and, or, not, in, is
-  vim.api.nvim_set_hl(0, "@keyword.return", { fg = p.magenta, bold = true }) -- return, yield
-  vim.api.nvim_set_hl(0, "@keyword.import", { fg = p.magenta }) -- import, from, include, require
-  vim.api.nvim_set_hl(0, "@keyword.conditional", { fg = p.magenta }) -- if, else, elif, switch, case
-  vim.api.nvim_set_hl(0, "@keyword.repeat", { fg = p.magenta }) -- for, while, do, loop
-  vim.api.nvim_set_hl(0, "@keyword.exception", { fg = p.red }) -- try, catch, except, finally, throw
-  vim.api.nvim_set_hl(0, "@keyword.directive", { fg = p.magenta }) -- #include, #define, use strict
-  vim.api.nvim_set_hl(0, "@keyword.directive.define", { fg = p.magenta }) -- #define, #ifdef
+    -- Decorators & attributes
+    ["@attribute"] = { fg = p.amber, italic = true },
+    ["@decorator"] = { fg = p.amber },
 
-  -- Operators (+, -, *, /, =, ==, !=, &&, ||, +=)
-  vim.api.nvim_set_hl(0, "@operator", { fg = p.fg1 })
+    -- Tags
+    ["@tag"] = { fg = p.green },
+    ["@tag.attribute"] = { fg = p.amber, italic = true },
+    ["@tag.delimiter"] = { fg = p.fg2 },
 
-  -- Punctuation (;, ,, ., :, {}, [], ())
-  vim.api.nvim_set_hl(0, "@punctuation", { fg = p.fg1 })
-  vim.api.nvim_set_hl(0, "@punctuation.delimiter", { fg = p.fg1 }) -- , ; :
-  vim.api.nvim_set_hl(0, "@punctuation.bracket", { fg = p.fg1 }) -- () [] {}
-  vim.api.nvim_set_hl(0, "@punctuation.special", { fg = p.magenta }) -- ${}, #{}  template literals
+    -- Markup
+    ["@markup.strong"] = { fg = p.fg1, bold = true },
+    ["@markup.italic"] = { fg = p.fg1, italic = true },
+    ["@markup.heading"] = { fg = p.amber, bold = true },
+    ["@markup.link"] = { fg = p.orange, underline = true },
+    ["@markup.link.url"] = { fg = p.orange, underline = true },
+    ["@markup.link.label"] = { fg = p.orange },
+    ["@markup.list"] = { fg = p.orange },
+    ["@markup.list.checked"] = { fg = p.teal },
+    ["@markup.list.unchecked"] = { fg = p.orange },
+    ["@markup.quote"] = { fg = p.fg3, italic = true },
+    ["@markup.raw"] = { fg = p.fg1 },
+    ["@markup.raw.block"] = { fg = p.fg1 },
+    ["@markup.math"] = { fg = p.gold },
+    ["@markup.underline"] = { fg = p.orange, underline = true },
 
-  -- Markup (for markdown, etc.)
-  vim.api.nvim_set_hl(0, "@markup.strong", { fg = p.fg1, bold = true })
-  vim.api.nvim_set_hl(0, "@markup.italic", { fg = p.fg1, italic = true })
-  vim.api.nvim_set_hl(0, "@markup.strikethrough", { fg = p.gray, strikethrough = true })
-  vim.api.nvim_set_hl(0, "@markup.underline", { fg = p.fg1, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.heading", { fg = p.fg0, bold = true })
-  vim.api.nvim_set_hl(0, "@markup.quote", { fg = p.gray, italic = true })
-  vim.api.nvim_set_hl(0, "@markup.math", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@markup.link", { fg = p.amber, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.link.label", { fg = p.pink })
-  vim.api.nvim_set_hl(0, "@markup.link.url", { fg = p.amber, underline = true })
-  vim.api.nvim_set_hl(0, "@markup.raw", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@markup.raw.block", { fg = p.yellow })
-  vim.api.nvim_set_hl(0, "@markup.list", { fg = p.magenta })
-  vim.api.nvim_set_hl(0, "@markup.list.checked", { fg = p.orange })
-  vim.api.nvim_set_hl(0, "@markup.list.unchecked", { fg = p.orange })
+    -- Diff / SCM
+    ["@diff.plus"] = { fg = p.teal },
+    ["@diff.minus"] = { fg = p.crimson },
+    ["@diff.delta"] = { fg = p.orange },
 
-  -- Tags (HTML/XML: <div>, <Header>, <p>, <MyComponent>)
-  vim.api.nvim_set_hl(0, "@tag", { fg = p.orange }) -- div, header, main, MyComponent
-  vim.api.nvim_set_hl(0, "@tag.attribute", { fg = p.pink }) -- className, id, href, onClick
-  vim.api.nvim_set_hl(0, "@tag.delimiter", { fg = p.gray }) -- < > </ />
+    -- Preprocessor
+  ["@preproc"] = { fg = p.yellow },
+  ["@include"] = { fg = p.blue },
+  ["@define"] = { fg = p.yellow },
+    ["@conditional"] = { fg = p.green },
+    ["@repeat"] = { fg = p.green },
+    ["@exception"] = { fg = p.green },
 
-  -- Attributes (@decorators, [attributes], #[derive])
-  vim.api.nvim_set_hl(0, "@attribute", { fg = p.yellow }) -- @Component, @override, [Serializable]
+    -- Special cases
+    ["@character.printf"] = { fg = p.gold },
+  }
 
-  -- Labels (goto labels, break/continue labels)
-  vim.api.nvim_set_hl(0, "@label", { fg = p.magenta }) -- label:, break label
+  for group, spec in pairs(highlights) do
+    set(group, spec)
+  end
 
-  -- Namespace (std::, React., namespace MyNamespace)
-  vim.api.nvim_set_hl(0, "@namespace", { fg = p.pink }) -- std, React, System
-  vim.api.nvim_set_hl(0, "@module", { fg = p.pink }) -- import * from 'module'
-
-  -- Preproc
-  vim.api.nvim_set_hl(0, "@preproc", { fg = p.magenta })
-
-  -- Include
-  vim.api.nvim_set_hl(0, "@include", { fg = p.magenta })
-
-  -- Define
-  vim.api.nvim_set_hl(0, "@define", { fg = p.magenta })
-
-  -- Conditional
-  vim.api.nvim_set_hl(0, "@conditional", { fg = p.magenta })
-
-  -- Repeat
-  vim.api.nvim_set_hl(0, "@repeat", { fg = p.magenta })
-
-  -- Exception
-  vim.api.nvim_set_hl(0, "@exception", { fg = p.red })
-
-  -- Special characters
-  vim.api.nvim_set_hl(0, "@character.printf", { fg = p.orange })
-
-  -- Diff (git diff colors: +added, -removed, ~modified)
-  vim.api.nvim_set_hl(0, "@diff.plus", { fg = p.orange }) -- + added lines
-  vim.api.nvim_set_hl(0, "@diff.minus", { fg = p.red }) -- - removed lines
-  vim.api.nvim_set_hl(0, "@diff.delta", { fg = p.yellow }) -- ~ modified lines
-
-  -- Language-specific
-  -- Lua
-  vim.api.nvim_set_hl(0, "@function.builtin.lua", { fg = p.fg2, bold = true })
-  vim.api.nvim_set_hl(0, "@variable.builtin.lua", { fg = p.red, italic = true })
-
-  -- Python
-  vim.api.nvim_set_hl(0, "@function.builtin.python", { fg = p.fg2, bold = true })
-  vim.api.nvim_set_hl(0, "@variable.builtin.python", { fg = p.red, italic = true })
-
-  -- JavaScript/TypeScript
-  vim.api.nvim_set_hl(0, "@function.builtin.javascript", { fg = p.fg2, bold = true })
-  vim.api.nvim_set_hl(0, "@variable.builtin.javascript", { fg = p.red, italic = true })
-
+  -- Language specific overrides
+  set("@function.builtin.lua", { fg = p.amber })
+  set("@variable.builtin.lua", { fg = p.blue, italic = true })
+  set("@function.builtin.python", { fg = p.amber })
+  set("@variable.builtin.python", { fg = p.blue, italic = true })
+  set("@function.builtin.javascript", { fg = p.amber })
+  set("@variable.builtin.javascript", { fg = p.blue, italic = true })
 end
 
 return M
