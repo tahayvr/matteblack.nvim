@@ -1,16 +1,29 @@
+local config = require("matteblack.config")
+
 local M = {}
 
-function M.colorscheme()
+---@param opts? matteblack.Config
+function M.setup(opts)
+  config.setup(opts)
+  M.load()
+end
+
+function M.load()
   -- Load the main colors
   require("matteblack.colors").apply()
 end
 
+-- Backwards compatibility
+function M.colorscheme()
+  M.load()
+end
+
 function M.lualine()
-  return require("matteblack.lualine")
+  return require("lualine.themes.matteblack")
 end
 
 function M.snacks()
-  require("matteblack.snacks").apply()
+  require("matteblack.plugins.snacks").apply()
 end
 
 function M.treesitter()
