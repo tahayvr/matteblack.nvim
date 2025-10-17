@@ -3,6 +3,8 @@
 local M = {}
 
 M.palette = {
+  none = "NONE",
+
   -- Base shades
   bg0 = "#0D0D0D",
   bg1 = "#121212",
@@ -49,9 +51,16 @@ M.palette = {
 }
 
 function M.apply()
-  local p = M.palette
-  local function set(group, opts)
-    vim.api.nvim_set_hl(0, group, opts)
+  local config = require("matteblack.config")
+  local opts = config.options
+
+  local p = vim.tbl_deep_extend("force", {}, M.palette)
+
+  -- Allow user to customize colors
+  opts.on_colors(p)
+
+  local function set(group, hl_opts)
+    vim.api.nvim_set_hl(0, group, hl_opts)
   end
 
   vim.cmd("highlight clear")
@@ -61,10 +70,11 @@ function M.apply()
   vim.o.background = "dark"
   vim.g.colors_name = "matteblack"
 
-  set("Normal", { fg = p.fg1, bg = p.bg1 })
-  set("NormalFloat", { fg = p.fg1, bg = p.bg3 })
-  set("FloatBorder", { fg = p.bg2, bg = p.bg3 })
-  set("SignColumn", { fg = p.bg2, bg = p.bg1 })
+  -- Apply transparent backgrounds if enabled
+  set("Normal", { fg = p.fg1, bg = opts.transparent and p.none or p.bg1 })
+  set("NormalFloat", { fg = p.fg1, bg = opts.styles.floats == "transparent" and p.none or p.bg3 })
+  set("FloatBorder", { fg = p.bg2, bg = opts.styles.floats == "transparent" and p.none or p.bg3 })
+  set("SignColumn", { fg = p.bg2, bg = opts.transparent and p.none or p.bg1 })
   set("NonText", { fg = p.bg2 })
 
   set("Cursor", { fg = p.bg1, bg = p.orange })
@@ -81,7 +91,7 @@ function M.apply()
   set("Substitute", { fg = p.bg1, bg = p.gold })
   set("HighlightedyankRegion", { bg = p.bg4 })
 
-  set("FoldColumn", { fg = p.bg2, bg = p.bg1 })
+  set("FoldColumn", { fg = p.bg2, bg = opts.transparent and p.none or p.bg1 })
   set("Folded", { fg = p.fg2, bg = p.bg3 })
 
   set("StatusLine", { fg = p.fg1, bg = p.bg3 })
@@ -89,7 +99,7 @@ function M.apply()
   set("WinSeparator", { fg = p.bg2 })
   set("VertSplit", { fg = p.bg2 })
   set("TabLine", { fg = p.fg3, bg = p.bg2 })
-  set("TabLineFill", { bg = p.bg1 })
+  set("TabLineFill", { bg = opts.transparent and p.none or p.bg1 })
   set("TabLineSel", { fg = p.fg1, bg = p.bg3, bold = true })
 
   set("Pmenu", { fg = p.fg2, bg = p.bg3 })
@@ -109,21 +119,44 @@ function M.apply()
   set("DiagnosticWarn", { fg = p.amber })
   set("DiagnosticError", { fg = p.crimson })
 
-  set("Comment", { fg = p.comment, italic = true })
+  -- Diagnostic virtual text
+  set("DiagnosticVirtualTextError", { fg = p.crimson, italic = true })
+  set("DiagnosticVirtualTextWarn", { fg = p.amber, italic = true })
+  set("DiagnosticVirtualTextInfo", { fg = p.gold, italic = true })
+  set("DiagnosticVirtualTextHint", { fg = p.blue, italic = true })
+  set("DiagnosticVirtualTextOk", { fg = p.teal, italic = true })
+
+  -- Diagnostic underlines
+  set("DiagnosticUnderlineError", { undercurl = true, sp = p.crimson })
+  set("DiagnosticUnderlineWarn", { undercurl = true, sp = p.amber })
+  set("DiagnosticUnderlineInfo", { undercurl = true, sp = p.gold })
+  set("DiagnosticUnderlineHint", { undercurl = true, sp = p.blue })
+  set("DiagnosticUnderlineOk", { undercurl = true, sp = p.teal })
+
+  -- LSP
+  set("LspInlayHint", { fg = p.comment, italic = true })
+  set("LspReferenceText", { bg = p.bg3 })
+  set("LspReferenceRead", { bg = p.bg3 })
+  set("LspReferenceWrite", { bg = p.bg3, underline = true })
+
+  -- Apply style configurations
+  local keyword_style = vim.tbl_extend("force", { fg = p.green }, opts.styles.keywords or {})
+
+  set("Comment", vim.tbl_extend("force", { fg = p.comment }, opts.styles.comments or {}))
   set("Constant", { fg = p.amber })
   set("String", { fg = p.fg1 })
   set("Character", { fg = p.gold })
   set("Number", { fg = p.gold })
   set("Float", { fg = p.gold })
   set("Boolean", { fg = p.teal })
-  set("Identifier", { fg = p.amber })
-  set("Function", { fg = p.crimson })
+  set("Identifier", vim.tbl_extend("force", { fg = p.amber }, opts.styles.variables or {}))
+  set("Function", vim.tbl_extend("force", { fg = p.crimson }, opts.styles.functions or {}))
   set("Statement", { fg = p.green })
-  set("Keyword", { fg = p.green })
-  set("Conditional", { fg = p.green })
-  set("Repeat", { fg = p.green })
+  set("Keyword", keyword_style)
+  set("Conditional", keyword_style)
+  set("Repeat", keyword_style)
   set("Operator", { fg = p.fg2 })
-  set("Exception", { fg = p.green })
+  set("Exception", keyword_style)
   set("PreProc", { fg = p.yellow })
   set("Include", { fg = p.blue })
   set("Define", { fg = p.yellow })
@@ -160,11 +193,37 @@ function M.apply()
   vim.g.terminal_color_background = p.bg1
   vim.g.terminal_color_foreground = p.fg1
 
-  require("matteblack.treesitter").apply()
-  require("matteblack.snacks").apply()
-  require("matteblack.todo-comments").apply()
-  require("matteblack.noice").apply()
-  require("matteblack.neotree").apply()
+  require("matteblack.plugins.treesitter").apply(p, opts)
+  require("matteblack.plugins.snacks").apply(p, opts)
+  require("matteblack.plugins.todo-comments").apply(p, opts)
+  require("matteblack.plugins.noice").apply(p, opts)
+  require("matteblack.plugins.neotree").apply(p, opts)
+  require("matteblack.plugins.telescope").apply(p, opts)
+  require("matteblack.plugins.lazy").apply(p, opts)
+  require("matteblack.plugins.cmp").apply(p, opts)
+  require("matteblack.plugins.gitsigns").apply(p, opts)
+  require("matteblack.plugins.which-key").apply(p, opts)
+  require("matteblack.plugins.trouble").apply(p, opts)
+  require("matteblack.plugins.bufferline").apply(p, opts)
+  require("matteblack.plugins.flash").apply(p, opts)
+  require("matteblack.plugins.illuminate").apply(p, opts)
+  require("matteblack.plugins.indent-blankline").apply(p, opts)
+  require("matteblack.plugins.aerial").apply(p, opts)
+  require("matteblack.plugins.hop").apply(p, opts)
+  require("matteblack.plugins.leap").apply(p, opts)
+  require("matteblack.plugins.barbar").apply(p, opts)
+
+  -- Dim inactive windows
+  if opts.dim_inactive then
+    set("NormalNC", { fg = p.fg3, bg = opts.transparent and p.none or p.bg0 })
+  end
+
+  -- Allow user to customize highlights
+  local highlights = {}
+  opts.on_highlights(highlights, p)
+  for group, hl_opts in pairs(highlights) do
+    set(group, hl_opts)
+  end
 end
 
 return M
