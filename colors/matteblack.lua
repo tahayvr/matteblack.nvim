@@ -1,1 +1,1 @@
-require("matteblack").colorscheme() 
+require("matteblack").load() 

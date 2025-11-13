@@ -6,15 +6,15 @@ A Matte Black colorscheme for Neovim.
 
 TBD: Screenshots will be added soon.
 
-<!--
 ## Features
 
 - 🌒 **Matte Black aesthetic** - Deep, rich blacks with carefully chosen accent colors
 - 🎨 **Comprehensive treesitter support** - Semantic syntax highlighting for modern code editing
-- 🍿 **Snacks.nvim integration** - Beautiful theming for dashboard, picker, notifier, and all components
+- 🔌 **20+ plugin integrations** - Beautiful theming for popular Neovim plugins
+- 🎯 **Highly customizable** - Transparent backgrounds, style overrides, and color callbacks
 - 📊 **Lualine theme included** - Matching statusline colors
-- 🎯 **Consistent color palette** - Harmonious colors across all UI elements
- -->
+- 🖥️ **External themes** - Generate themes for ghostty, fzf, lazygit, opencode, and many more
+- 🎛️ **Style configurations** - Customize comments, keywords, functions, variables, sidebars, and floats
 
 ## Installation
 
@@ -33,25 +33,108 @@ TBD: Screenshots will be added soon.
 
 I've only tested this with lazy.nvim, but it should work with other plugin managers.
 
+## Advanced Configuration
+
+```lua
+require("matteblack").setup({
+  -- Enable transparent background
+  transparent = false,
+
+  -- Enable terminal colors
+  terminal_colors = true,
+
+  -- Style configurations
+  styles = {
+    comments = { italic = true },
+    keywords = {},
+    functions = {},
+    variables = {},
+    sidebars = "dark",        -- "dark", "transparent"
+    floats = "dark",          -- "dark", "transparent"
+  },
+
+  -- Dim inactive windows
+  dim_inactive = false,
+
+  -- Customize colors
+  on_colors = function(colors)
+    colors.orange = "#FF8800"  -- Override colors
+  end,
+
+  -- Customize highlight groups
+  on_highlights = function(highlights, colors)
+    highlights.Comment = { fg = colors.gray, italic = true }
+  end,
+})
+
+-- Then load the colorscheme
+vim.cmd.colorscheme "matteblack"
+```
+
+## Supported Plugins
+
+matteblack.nvim includes built-in support for the following plugins:
+
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+- [lazy.nvim](https://github.com/folke/lazy.nvim)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim)
+- [which-key.nvim](https://github.com/folke/which-key.nvim)
+- [trouble.nvim](https://github.com/folke/trouble.nvim)
+- [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [barbar.nvim](https://github.com/romgrk/barbar.nvim)
+- [flash.nvim](https://github.com/folke/flash.nvim)
+- [vim-illuminate](https://github.com/RRethy/vim-illuminate)
+- [indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim)
+- [aerial.nvim](https://github.com/stevearc/aerial.nvim)
+- [hop.nvim](https://github.com/phaazon/hop.nvim)
+- [leap.nvim](https://github.com/ggandor/leap.nvim)
+- [snacks.nvim](https://github.com/folke/snacks.nvim)
+- [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim)
+- [noice.nvim](https://github.com/folke/noice.nvim)
+- [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
+- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
+
+## External Themes
+
+Generate matching themes for your terminal and tools:
+
+```lua
+require("matteblack.extra").setup()
+```
+
+This will generate theme files in `extras/` directory for:
+
+- **[btop](https://github.com/aristocratos/btop)** - [extras/btop/matteblack.theme](extras/btop/matteblack.theme)
+- **[delta](https://github.com/dandavison/delta)** - [extras/delta/matteblack.gitconfig](extras/delta/matteblack.gitconfig)
+- **[fzf](https://github.com/junegunn/fzf)** - [extras/fzf/matteblack.sh](extras/fzf/matteblack.sh)
+- **[Ghostty](https://ghostty.org/)** - [extras/ghostty/matteblack](extras/ghostty/matteblack)
+- **[Lazygit](https://github.com/jesseduffield/lazygit)** - [extras/lazygit/matteblack.yml](extras/lazygit/matteblack.yml)
+- **[OpenCode](https://opencode.ai)** - [extras/opencode/matteblack.json](extras/opencode/matteblack.json)
+- **[Pygments](https://pygments.org)** - [extras/pygments/matteblack.py](extras/pygments/matteblack.py)
+- **[Slack](https://slack.com)** - [extras/slack/matteblack.txt](extras/slack/matteblack.txt)
+- **[Sublime Text](https://www.sublimetext.com/)** - [extras/sublime/matteblack.tmTheme](extras/sublime/matteblack.tmTheme)
+- **[Xcode](https://developer.apple.com/xcode/)** - [extras/xcode/matteblack.xccolortheme](extras/xcode/matteblack.xccolortheme)
+
 ## Configuration
 
 ### Basic Usage
 
 ```lua
 -- Apply the complete theme (includes treesitter and Snacks support)
-require("matteblack").colorscheme()
+require("matteblack").load()
 
 -- Or use the traditional method
 vim.cmd.colorscheme "matteblack"
 ```
 
-<!--
 ### Lualine Integration
 
 ```lua
 require('lualine').setup {
   options = {
-    theme = require("matteblack").lualine()
+    theme = 'matteblack'
   }
 }
 ```
@@ -91,16 +174,20 @@ No additional configuration needed - treesitter highlights are included automati
 | ---------- | --------- | ------------------------- |
 | Background | `#121212` | Main background           |
 | Foreground | `#EAEAEA` | Main text                 |
-| gray2      | `#61AFEF` | Functions, headings       |
-| Yellow     | `#E5C07B` | Types, constructors       |
-| Magenta    | `#C678DD` | Keywords, control flow    |
-| gray1      | `#98C379` | Strings, positive changes |
-| Red        | `#B91C1C` | Errors, exceptions        |
-| Orange     | `#F59E0B` | Numbers, warnings         |
-| amber      | `#56B6C2` | Constants, properties     |
-| Pink       | `#E06C75` | Parameters                |
+| Crimson    | `#DC2626` | Functions, errors         |
+| Yellow     | `#FBBF24` | Types, constructors       |
+| Green      | `#059669` | Keywords, control flow    |
+| Teal       | `#10B981` | Booleans, success         |
+| Red        | `#B91C1C` | Critical errors           |
+| Orange     | `#F59E0B` | Warnings                  |
+| Gold       | `#EFBF04` | Numbers, literals         |
+| Amber      | `#D97706` | Constants, properties     |
+| Blue       | `#3B82F6` | Includes, hints           |
+| Purple     | `#8D20B2` | Special keywords          |
+| Cyan       | `#1EA7A0` | Utilities                 |
+| Pink       | `#F87171` | Visual elements           |
+| Magenta    | `#B027DE` | Special syntax            |
 | Gray       | `#5C6370` | Comments, delimiters      |
--->
 
 ## Contributing
 
